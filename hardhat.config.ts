@@ -4,6 +4,8 @@ import '@nomiclabs/hardhat-waffle'
 import '@nomiclabs/hardhat-etherscan'
 import 'hardhat-watcher'
 
+require('dotenv').config();
+
 const LOW_OPTIMIZER_COMPILER_SETTINGS = {
   version: '0.7.6',
   settings: {
@@ -47,6 +49,12 @@ export default {
   networks: {
     hardhat: {
       allowUnlimitedContractSize: false,
+    },
+    uzheth: {
+      url: process.env.API_URL,
+      accounts: [`0x${process.env.PRIVATE_KEY}`],
+      // allowUnlimitedContractSize: true,
+      chainId: 702,
     },
     mainnet: {
       url: `https://mainnet.infura.io/v3/${process.env.INFURA_API_KEY}`,
